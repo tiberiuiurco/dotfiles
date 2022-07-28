@@ -6,9 +6,20 @@ function map(mode, lhs, rhs, opts)
     end
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
+function smap(mode, lhs, rhs, opts)
+    local options = { noremap = true, silent=true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
 
 --
 -- map("n", "", "<CR>")
+
+-- Copy Paste --
+smap("v", "<c-c>", '"*y :let @+=@*<CR>')
+smap("n", "<c-p>", '"+P')
 
 -- Tabs --
 map("n", "<m-t>", ":tabnew %<CR>")
@@ -16,8 +27,8 @@ map("n", "<m-y>", ":tabclose<CR>")
 map("n", "<m-\\>", ":tabonly<CR>")
 
 -- Buffers --
-map("n", "<S-j>h", ":bnext<CR>")
-map("n", "<S-k>l", ":bprevious<CR>")
+map("n", "L", ":bnext<CR>")
+map("n", "H", ":bprevious<CR>")
 
 -- Normal --
 -- Move text up and down
@@ -25,14 +36,14 @@ map("n", "<A-j>", "<Esc>:m .+1<CR>==gi")
 map("n", "<A-k>", "<Esc>:m .-2<CR>==gi")
 
 -- I hate typing these
-map("n", "H", "^")
-map("n", "L", "$")
-map("v", "H", "^")
-map("v", "L", "$")
-map("x", "H", "^")
-map("x", "L", "$")
-map("o", "H", "^")
-map("o", "L", "$")
+-- map("n", "H", "^")
+-- map("n", "L", "$")
+-- map("v", "H", "^")
+-- map("v", "L", "$")
+-- map("x", "H", "^")
+-- map("x", "L", "$")
+-- map("o", "H", "^")
+-- map("o", "L", "$")
 
 -- Better window navigation
 map("n", "<m-h>", "<C-w>h")

@@ -47,4 +47,7 @@ Plug 'moll/vim-bbye'
 -- Copilot
 Plug 'github/copilot.vim'
 
+-- Brackets
+Plug 'tpope/vim-surround'
+
 vim.call('plug#end')
