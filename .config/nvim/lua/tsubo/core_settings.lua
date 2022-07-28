@@ -94,6 +94,7 @@ vim.opt.foldenable = true
 vim.opt.signcolumn = 'yes'
 vim.opt.conceallevel = 2
 vim.opt.concealcursor = 'niv'
+vim.opt.relativenumber = true
 
 -- vim.g.colors_name = 'gruvbox-material'
 
