@@ -25,6 +25,11 @@ smap("n", "<c-p>", '"+P')
 map("n", "<m-t>", ":tabnew %<CR>")
 map("n", "<m-y>", ":tabclose<CR>")
 map("n", "<m-\\>", ":tabonly<CR>")
+map("n", "<leader>1", "1gt")
+map("n", "<leader>2", "2gt")
+map("n", "<leader>3", "3gt")
+map("n", "<leader>4", "4gt")
+map("n", "<leader>5", "5gt")
 
 -- Buffers --
 map("n", "L", ":bnext<CR>")
