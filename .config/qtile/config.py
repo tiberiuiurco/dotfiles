@@ -221,7 +221,7 @@ layouts = [
     layout.Columns(**default_layout_config),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
+    layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
     layout.MonadTall(**default_layout_config),

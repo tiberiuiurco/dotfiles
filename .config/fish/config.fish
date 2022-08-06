@@ -2,7 +2,13 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+# Z
+. /home/tsubo/.config/fish/z/z.fish
+
 ### ALIASES ###
+
+# Work
+alias myip="ip a | grep wlp | awk 'FNR == 2' | awk '{print \$2}'"
 
 # root privileges
 alias doas="doas --"

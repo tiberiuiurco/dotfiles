@@ -10,6 +10,7 @@ require('tsubo.keymaps')
 require('tsubo.bufferline')
 require('tsubo.nvim-tree')
 require('tsubo.gitsigns')
+require('tsubo.colorizer')
 
 
 vim.cmd[[colorscheme codedark]]

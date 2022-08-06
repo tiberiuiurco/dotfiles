@@ -50,4 +50,7 @@ Plug 'github/copilot.vim'
 -- Brackets
 Plug 'tpope/vim-surround'
 
+-- Colors
+Plug 'norcalli/nvim-colorizer.lua'
+
 vim.call('plug#end')

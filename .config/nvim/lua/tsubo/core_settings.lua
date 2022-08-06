@@ -101,6 +101,8 @@ vim.opt.relativenumber = true
 vim.g.mapleader = ' '
 vim.g.rooter_patters = {'.git', '.svn', 'package.json', '!node_modules'}
 
+-- Github Copilor
+vim.g.copilot_node_command = '~/.local/share/nvm/v17.9.0/bin/node'
 
 --local colorscheme = "gruvbox-material"
 local colorscheme = "codedark"

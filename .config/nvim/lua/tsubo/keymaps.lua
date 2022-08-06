@@ -11,7 +11,6 @@ function smap(mode, lhs, rhs, opts)
     if opts then
         options = vim.tbl_extend("force", options, opts)
     end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 --
@@ -79,3 +78,7 @@ map("n", "<m-v>", "<cmd>split<CR>")
 
 -- NvimTree --
 map("n", "<m-e>", ":NvimTreeToggle<CR>")
+
+-- D without Yank --
+map("n", "d", '"_d')
+map("v", "d", '"_d')
