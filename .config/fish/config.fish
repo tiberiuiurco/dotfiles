@@ -23,6 +23,9 @@ alias .5='cd ../../../../..'
 # vim
 alias vim='nvim'
 
+# Programs
+source '/home/tsubo/.config/fish/functions/lfcd.fish'
+
 # Changing "ls" to "exa"
 alias ls='exa -al --color=always --group-directories-first --icons' # my preferred listing
 alias la='exa -a --color=always --group-directories-first --icons'  # all files and dirs
@@ -65,6 +68,11 @@ starship init fish | source
 function ide
   bash -l -c '$HOME/.config/fish/functions/ide.sh'
 end
+
+function user_keys
+  bind \co 'set old_tty (stty -g); stty sane; lfcd; stty $old_tty; commandline -f repaint'
+end
+user_keys
 
 ### NVM
 # set PATH /home/tsubo/.nvm/versions/node/v18.4.0/bin $PATH
