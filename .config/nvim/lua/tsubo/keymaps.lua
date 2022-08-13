@@ -57,6 +57,8 @@ map("n", "<m-l>", "<C-w>l")
 
 -- Insert --
 map("i", "jk", "<ESC>")
+-- Copilot
+vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
 -- Visual --
 -- Stay in indent mode
@@ -82,3 +84,4 @@ map("n", "<m-e>", ":NvimTreeToggle<CR>")
 -- D without Yank --
 map("n", "d", '"_d')
 map("v", "d", '"_d')
+

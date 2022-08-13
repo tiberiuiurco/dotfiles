@@ -2,8 +2,9 @@
 snippet tconst "ts const"
 	const ${1}: ${2:any} = ${3};
 	${0}
-snippet clg "ts clg"
-	console.log(${1});
-	${0}
+snippet clg1 "Console log with 1 parameter"
+	console.log(${1});${0}
+snippet clg2 "ts clg"
+	console.log(${1}, ${2});${0}
 snippet + "ts create field"
 	${1}: ${0:any}

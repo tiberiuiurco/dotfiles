@@ -21,7 +21,7 @@ alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
 # vim
-alias vim='nvim'
+alias v='nvim'
 
 # Programs
 source '/home/tsubo/.config/fish/functions/lfcd.fish'

@@ -2,7 +2,8 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
-Plug 'sainnhe/gruvbox-material'
+-- Plug 'sainnhe/gruvbox-material'
+Plug 'dracula/vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'airblade/vim-rooter'
@@ -18,12 +19,12 @@ Plug 'windwp/nvim-autopairs'
 -- Completion
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'L3MON4D3/LuaSnip'
-Plug 'saadparwaiz1/cmp_luasnip'
+-- Plug 'L3MON4D3/LuaSnip'
+-- Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'onsails/lspkind-nvim'
 
 Plug "hrsh7th/cmp-buffer" -- buffer completions
-Plug "hrsh7th/cmp-path" -- path completions
+-- Plug "hrsh7th/cmp-path" -- path completions
 Plug "hrsh7th/cmp-cmdline" -- cmdline completions
 Plug "hrsh7th/cmp-emoji"
 Plug "hrsh7th/cmp-nvim-lua"
@@ -52,5 +53,8 @@ Plug 'tpope/vim-surround'
 
 -- Colors
 Plug 'norcalli/nvim-colorizer.lua'
+
+-- Formatting
+Plug 'jose-elias-alvarez/null-ls.nvim'
 
 vim.call('plug#end')

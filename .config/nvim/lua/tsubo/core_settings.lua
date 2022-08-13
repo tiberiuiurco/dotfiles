@@ -1,4 +1,4 @@
-vim.o.background = 'dark'
+-- vim.o.background = 'dark'
 
 local cache_dir = os.getenv('HOME') .. '/.cache/nvim/'
 
@@ -8,7 +8,7 @@ vim.opt.fileformats = 'unix,mac,dos'
 vim.opt.magic = true
 vim.opt.virtualedit = 'block'
 vim.opt.encoding = 'utf-8'
-vim.opt.viewoptions = 'folds,cursor,curdir,slash,unix'
+vim.opt.viewoptions = 'folds,cursor,curdir,slash,unix,options'
 vim.opt.sessionoptions = 'curdir,help,tabpages,winsize'
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.wildignorecase = true
@@ -82,8 +82,8 @@ vim.opt.formatoptions = '1jcroql'
 vim.opt.textwidth = 80
 vim.opt.expandtab = true
 vim.opt.autoindent = true
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.softtabstop = -1
 vim.opt.breakindentopt = 'shift:2,min:20'
 vim.opt.wrap = false
@@ -96,19 +96,28 @@ vim.opt.conceallevel = 2
 vim.opt.concealcursor = 'niv'
 vim.opt.relativenumber = true
 
--- vim.g.colors_name = 'gruvbox-material'
+vim.g.colors_name = 'dracula'
 
 vim.g.mapleader = ' '
 vim.g.rooter_patters = {'.git', '.svn', 'package.json', '!node_modules'}
 
--- Github Copilor
+-- Github Copilot
 vim.g.copilot_node_command = '~/.local/share/nvm/v17.9.0/bin/node'
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+
+-- Git
+vim.g.gitblame_enabled = 0
+
+-- Views
+-- vim.cmd [[autocmd BufWinLeave *.* silent mkview!]]
+-- vim.cmd [[autocmd BufWinEnter *.* silent loadview]]
 
 --local colorscheme = "gruvbox-material"
-local colorscheme = "codedark"
+local colorscheme = "dracula"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
-  -- vim.notify("colorscheme " .. colorscheme .. " not found!")
+  vim.notify("colorscheme " .. colorscheme .. " not found!")
   return
 end

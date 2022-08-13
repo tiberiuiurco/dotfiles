@@ -11,6 +11,6 @@ require('tsubo.bufferline')
 require('tsubo.nvim-tree')
 require('tsubo.gitsigns')
 require('tsubo.colorizer')
+require('tsubo.null-ls')
 
-
-vim.cmd[[colorscheme codedark]]
+vim.cmd[[colorscheme dracula]]

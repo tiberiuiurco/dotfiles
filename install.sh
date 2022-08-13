@@ -19,3 +19,9 @@ sudo pacman -S dust # Disk Space Utility
 # Try zoxide and decide whether it's worth adding
 # yay -S ytop # HTOP BUT WAAAY BETTER
 
+# Vim dependencies
+sudo pacman -S shellcheck
+
+# Xmonad dependencies
+sudo pacman -S xmobar xmonad-contrib xmobar xterm dmenu trayer
+yay -S otf-font-aswesome ttf-mononoki ttf-ubuntu-font-family
