@@ -44,6 +44,7 @@ import XMonad.Layout.Spiral
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
+import XMonad.Layout.CenteredMaster
 
     -- Layouts modifiers
 import XMonad.Layout.LayoutModifier
@@ -347,12 +348,12 @@ tall     = renamed [Replace "tall"]
            $ subLayout [] (smartBorders Simplest)
            $ mySpacing 0
            $ ResizableTall 1 (3/100) (1/2) []
-monocle  = renamed [Replace "monocle"]
-           $ smartBorders
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           $ Full
+-- monocle  = renamed [Replace "monocle"]
+--            $ smartBorders
+--            $ windowNavigation
+--            $ addTabs shrinkText myTabTheme
+--            $ subLayout [] (smartBorders Simplest)
+--            $ Full
 floats   = renamed [Replace "floats"]
            $ smartBorders
            $ simplestFloat
@@ -365,39 +366,39 @@ grid     = renamed [Replace "grid"]
            $ mySpacing 0
            $ mkToggle (single MIRROR)
            $ Grid (16/10)
-spirals  = renamed [Replace "spirals"]
-           $ limitWindows 9
-           $ smartBorders
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           $ mySpacing' 0
-           $ spiral (6/7)
-threeCol = renamed [Replace "threeCol"]
-           $ limitWindows 7
-           $ smartBorders
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           $ ThreeCol 1 (3/100) (1/2)
-threeRow = renamed [Replace "threeRow"]
-           $ limitWindows 7
-           $ smartBorders
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           -- Mirror takes a layout and rotates it by 90 degrees.
-           -- So we are applying Mirror to the ThreeCol layout.
-           $ Mirror
-           $ ThreeCol 1 (3/100) (1/2)
-tabs     = renamed [Replace "tabs"]
-           -- I cannot add spacing to this layout because it will
-           -- add spacing between window and tabs which looks bad.
-           $ tabbed shrinkText myTabTheme
-tallAccordion  = renamed [Replace "tallAccordion"]
-           $ Accordion
-wideAccordion  = renamed [Replace "wideAccordion"]
-           $ Mirror Accordion
+-- spirals  = renamed [Replace "spirals"]
+--            $ limitWindows 9
+--            $ smartBorders
+--            $ windowNavigation
+--            $ addTabs shrinkText myTabTheme
+--            $ subLayout [] (smartBorders Simplest)
+--            $ mySpacing' 0
+--            $ spiral (6/7)
+-- threeCol = renamed [Replace "threeCol"]
+--            $ limitWindows 7
+--            $ smartBorders
+--            $ windowNavigation
+--            $ addTabs shrinkText myTabTheme
+--            $ subLayout [] (smartBorders Simplest)
+--            $ ThreeCol 1 (3/100) (1/2)
+-- threeRow = renamed [Replace "threeRow"]
+--            $ limitWindows 7
+--            $ smartBorders
+--            $ windowNavigation
+--            $ addTabs shrinkText myTabTheme
+--            $ subLayout [] (smartBorders Simplest)
+--            -- Mirror takes a layout and rotates it by 90 degrees.
+--            -- So we are applying Mirror to the ThreeCol layout.
+--            $ Mirror
+--            $ ThreeCol 1 (3/100) (1/2)
+-- tabs     = renamed [Replace "tabs"]
+--            -- I cannot add spacing to this layout because it will
+--            -- add spacing between window and tabs which looks bad.
+--            $ tabbed shrinkText myTabTheme
+-- tallAccordion  = renamed [Replace "tallAccordion"]
+--            $ Accordion
+-- wideAccordion  = renamed [Replace "wideAccordion"]
+--            $ Mirror Accordion
 
 -- setting colors for tabs layout and tabs sublayout.
 myTabTheme = def { fontName            = myFont
@@ -422,19 +423,22 @@ myShowWNameTheme = def
 myLayoutHook = avoidStruts
                $ mouseResize
                $ windowArrange
-               $ T.toggleLayouts floats
+               -- $ T.toggleLayouts floats
+               $ T.toggleLayouts grid
+               $ T.toggleLayouts tall
                $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
   where
     myDefaultLayout = withBorder myBorderWidth tall
-                                           ||| noBorders monocle
+                                           -- ||| noBorders monocle
                                            ||| floats
-                                           ||| noBorders tabs
+                                           -- ||| noBorders tabs
                                            ||| grid
-                                           ||| spirals
-                                           ||| threeCol
-                                           ||| threeRow
-                                           ||| tallAccordion
-                                           ||| wideAccordion
+                                           -- ||| spirals
+                                           -- ||| threeCol
+                                           -- ||| threeRow
+                                           -- ||| tallAccordion
+                                           -- ||| wideAccordion
+                                           ||| centerMaster (Grid 0.5)
 
 myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 -- myWorkspaces = [" dev ", " www ", " sys ", " doc ", " vbox ", " chat ", " mus ", " vid ", " gfx "]
@@ -560,7 +564,9 @@ myKeys c =
   -- Switch layouts
   ^++^ subKeys "Switch layouts"
   [ ("M-<Tab>", addName "Switch to next layout"   $ sendMessage NextLayout)
-  , ("M-<Space>", addName "Toggle noborders/full" $ sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts)]
+  , ("M-f", addName "Toggle noborders/full" $ sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts)
+  , ("M-t", addName "Toggle tall layout"        $ sendMessage (T.Toggle "tall"))
+  , ("M-g", addName "Toggle grid layout"        $ sendMessage (T.Toggle "grid"))]
 
   -- Window resizing
   ^++^ subKeys "Window resizing"
@@ -571,9 +577,9 @@ myKeys c =
 
   -- Floating windows
   ^++^ subKeys "Floating windows"
-  [ ("M-f", addName "Toggle float layout"        $ sendMessage (T.Toggle "floats"))
-  , ("M-t", addName "Sink a floating window"     $ withFocused $ windows . W.sink)
-  , ("M-S-t", addName "Sink all floated windows" $ sinkAll)]
+  -- [ ("M-f", addName "Toggle float layout"        $ sendMessage (T.Toggle "floats"))
+     [ ("M-S-<Space>", addName "Sink a floating window"     $ withFocused $ windows . W.sink)]
+  -- , ("M-S-t", addName "Sink all floated windows" $ sinkAll)]
 
   -- Increase/decrease spacing (gaps)
   ^++^ subKeys "Window spacing (gaps)"
