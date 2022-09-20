@@ -25,3 +25,6 @@ sudo pacman -S shellcheck
 # Xmonad dependencies
 sudo pacman -S xmobar xmonad-contrib xmobar xterm dmenu trayer
 yay -S otf-font-aswesome ttf-mononoki ttf-ubuntu-font-family
+
+# I3
+# sudo pacman -S i3-gaps sxhkd polybar
