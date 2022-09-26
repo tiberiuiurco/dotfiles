@@ -4,6 +4,7 @@ local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 local nvim_lsp = require("lspconfig")
 local servers = { "tsserver" }
+-- local null_ls = require("null-ls")
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
@@ -27,6 +28,10 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "ga", vim.lsp.buf.code_action, bufopts)
 	vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 	-- vim.keymap.set('n', 'gf', vim.lsp.buf.formatting, bufopts)
+    --
+    -- Null ls
+    client.resolved_capabilities.document_formatting = false
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", {})
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -125,3 +130,8 @@ local config = {
 }
 
 vim.diagnostic.config(config)
+require("null-ls").setup({
+    debug = true,
+    sources = { require("null-ls").builtins.formatting.prettier },
+})
+nvim_lsp["nil_ls"].setup({})

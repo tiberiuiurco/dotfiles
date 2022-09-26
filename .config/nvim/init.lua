@@ -1,16 +1,14 @@
 require('tsubo.core_settings')
+require('tsubo.keymaps')
 require('tsubo.plugins')
+require('tsubo.nvim-tree')
 require('tsubo.lspconfig')
-require('tsubo.lualine')
 require('tsubo.luasnip')
-require('tsubo.telescope')
+-- require('tsubo.bufferline')
+require('tsubo.null-ls')
 require('tsubo.treesitter')
 require('tsubo.autopairs')
-require('tsubo.keymaps')
-require('tsubo.bufferline')
-require('tsubo.nvim-tree')
-require('tsubo.gitsigns')
 require('tsubo.colorizer')
-require('tsubo.null-ls')
+
 
 vim.cmd[[colorscheme dracula]]

@@ -44,7 +44,7 @@ import XMonad.Layout.Spiral
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
-import XMonad.Layout.CenteredMaster
+-- import XMonad.Layout.CenteredMaster
 
     -- Layouts modifiers
 import XMonad.Layout.LayoutModifier
@@ -131,7 +131,7 @@ myStartupHook = do
   -- spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
 
   -- spawn ("sleep 2 && conky -c $HOME/.config/conky/xmonad/" ++ colorScheme ++ "-01.conkyrc")
-  spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 2 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
+  spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
 
   -- spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"
   -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
@@ -425,7 +425,6 @@ myLayoutHook = avoidStruts
                $ windowArrange
                -- $ T.toggleLayouts floats
                $ T.toggleLayouts grid
-               $ T.toggleLayouts tall
                $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
   where
     myDefaultLayout = withBorder myBorderWidth tall
@@ -438,7 +437,7 @@ myLayoutHook = avoidStruts
                                            -- ||| threeRow
                                            -- ||| tallAccordion
                                            -- ||| wideAccordion
-                                           ||| centerMaster (Grid 0.5)
+                                           -- ||| centerMaster (Grid 0.5)
 
 myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 -- myWorkspaces = [" dev ", " www ", " sys ", " doc ", " vbox ", " chat ", " mus ", " vid ", " gfx "]
@@ -466,7 +465,7 @@ myManageHook = composeAll
   , className =? "Yad"             --> doCenterFloat
   , title =? "Oracle VM VirtualBox Manager"  --> doFloat
   , title =? "Mozilla Firefox"     --> doShift ( myWorkspaces !! 1 )
-  , title =? "Google Chrome"     --> doShift ( myWorkspaces !! 2 )
+  -- , title =? "Google Chrome"     --> doShift ( myWorkspaces !! 2 )
   , className =? "Brave-browser"   --> doShift ( myWorkspaces !! 1 )
   , className =? "mpv"             --> doShift ( myWorkspaces !! 7 )
   , className =? "Gimp"            --> doShift ( myWorkspaces !! 8 )
@@ -565,8 +564,9 @@ myKeys c =
   ^++^ subKeys "Switch layouts"
   [ ("M-<Tab>", addName "Switch to next layout"   $ sendMessage NextLayout)
   , ("M-f", addName "Toggle noborders/full" $ sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts)
-  , ("M-t", addName "Toggle tall layout"        $ sendMessage (T.Toggle "tall"))
-  , ("M-g", addName "Toggle grid layout"        $ sendMessage (T.Toggle "grid"))]
+  -- , ("M-S-t", addName "Toggle tall layout"        $ sendMessage (T.Toggle "tall"))
+  -- , ("M-g", addName "Toggle grid layout"        $ sendMessage (T.Toggle "grid"))]
+  ]
 
   -- Window resizing
   ^++^ subKeys "Window resizing"

@@ -8,8 +8,8 @@ treesitter.setup {
       enable = true
     },
     highlight = {
-        enable = true,
-        -- disable = { "html" }
+        enable = disable,
+        disable = { "html", "js" }
     },
     -- ...
     rainbow = {
